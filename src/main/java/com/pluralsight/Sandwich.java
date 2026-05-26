@@ -4,7 +4,7 @@ import com.pluralsight.Enums.*;
 
 import java.util.HashSet;
 
-public class Sandwich
+public class Sandwich implements Product
 {
     private Bread bread;
     private int sandwichSize;
@@ -101,4 +101,31 @@ public class Sandwich
         sides.add(side);
     }
 
+    @Override
+    public double getPrice()
+    {
+        double total = 0;
+        switch(this.sandwichSize)
+        {
+            case 4:
+                total += 5.50;
+                if(meat != null) total += 1;
+                if(hasExtraMeat) total += .5;
+                if(cheese != null) total += 0.75;
+                if(hasExtraCheese) total += 0.3;
+            case 8:
+                total += 7.0;
+                if(meat != null) total += 2;
+                if(hasExtraMeat) total += 1.0;
+                if(cheese != null) total += 1.5;
+                if(hasExtraCheese) total += 0.6;
+            case 12:
+                total += 8.50;
+                if(meat != null) total += 3;
+                if(hasExtraMeat) total += 1.5;
+                if(cheese != null) total += 2.25;
+                if(hasExtraCheese) total += 0.9;
+        }
+        return total;
+    }
 }
