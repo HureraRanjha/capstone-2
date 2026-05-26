@@ -85,6 +85,20 @@ public class Sandwich
         return isToasted;
     }
 
+    //Check if this method needs duplicate toppings handling
+    public void addTopping(Toppings topping)
+    {
+        toppings.add(topping);
+    }
 
+    public void addSauce(Sauces sauce)
+    {
+        sauces.add(sauce);
+    }
+
+    public void addSide(Sides side)
+    {
+        sides.add(side);
+    }
 
 }
