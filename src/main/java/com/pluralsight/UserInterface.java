@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import com.pluralsight.Enums.Bread;
+import com.pluralsight.Enums.Ingredients;
 
 import java.util.Scanner;
 
@@ -72,7 +73,15 @@ public class UserInterface
     private void displaySandwichScreen()
     {
         Bread bread = displayBread();
+
         int sandwichSize = displaySandwichSize();
+
+        Ingredients meat = displayMeat();
+
+        boolean hasExtraMeat;
+        if(meat != null) hasExtraMeat = displayExtraMeat();
+
+
         //Sandwich sandwich = new Sandwich(bread)
     }
 
@@ -115,6 +124,55 @@ public class UserInterface
             else System.err.println("Invalid Input. Try again");
         } while(true);
     }
+
+    private Ingredients displayMeat()
+    {
+        String wantMeat;
+
+        System.out.println("""
+                Do you want meat? (yes/no)
+                
+                """);
+        wantMeat = scanner.nextLine();
+        if(wantMeat.equalsIgnoreCase("no")) return null;
+
+        int userInput;
+        do
+        {
+            System.out.println("""
+                What type of meat do you want?
+                1. Steak
+                2. Ham
+                3. Salami
+                4. Roast_Beef
+                5. Chicken
+                6. Bacon
+                
+                """);
+            userInput = Integer.parseInt(scanner.nextLine());
+
+            if (userInput == 1) return Ingredients.STEAK;
+            else if (userInput == 2) return Ingredients.HAM;
+            else if (userInput == 3) return Ingredients.SALAMI;
+            else if (userInput == 4) return Ingredients.ROAST_BEEF;
+            else if (userInput == 5) return Ingredients.CHICKEN;
+            else if (userInput == 6) return Ingredients.BACON;
+            else System.err.println("Invalid Input. Try again");
+        } while(true);
+    }
+
+    private boolean displayExtraMeat()
+    {
+        System.out.println("""
+                Do you want extra meat? (yes/no)
+                
+                """);
+        String wantExtraMeat = scanner.nextLine();
+
+        return wantExtraMeat.equalsIgnoreCase("yes");
+    }
+
+
 
     //private void displayProducts(Arra)
 }
