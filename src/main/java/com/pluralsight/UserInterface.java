@@ -23,6 +23,9 @@ public class UserInterface
         do
         {
             System.out.println("""
+                    ==================================
+                                HOME SCREEN
+                    ==================================
                     1. New Order
                     2. Exit 
                     """);
@@ -49,6 +52,9 @@ public class UserInterface
         do
         {
             System.out.println("""
+                    ==================================
+                                Order Screen
+                    ==================================            
                     1. Add Sandwich
                     2. Add Drink
                     3. Add Chips
@@ -83,6 +89,11 @@ public class UserInterface
 
     private void displaySandwichScreen()
     {
+        System.out.println("""
+                ==================================
+                          SANDWICH SCREEN
+                ==================================
+                """);
         Bread bread = displayBread();
 
         int sandwichSize = displaySandwichSize();
@@ -232,7 +243,6 @@ public class UserInterface
     {
         System.out.println("""
                 Do you want extra cheese? (yes/no)
-                
                 """);
         String wantExtraCheese = scanner.nextLine();
 
@@ -290,8 +300,7 @@ public class UserInterface
         String wantSauces;
 
         System.out.println("""
-                Do you want sauces? (yes/no)
-                
+                Do you want sauces? (yes/no
                 """);
         wantSauces = scanner.nextLine();
         if(wantSauces.equalsIgnoreCase("no")) return sauces;
@@ -372,6 +381,9 @@ public class UserInterface
         {
             loop = false;
             System.out.println("""
+                    ==================================
+                                DRINK SCREEN
+                    ==================================
                     What size drink do you want?
                     1. Small
                     2. Medium
@@ -400,6 +412,9 @@ public class UserInterface
         String wantChips;
 
         System.out.println("""
+                ==================================
+                            CHIPS SCREEN
+                ==================================
                 Do you want chips? (yes/no)
                 
                 """);
