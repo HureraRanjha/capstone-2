@@ -41,7 +41,7 @@ private int scanInt()
 ## My Personal Challenges 
 During this week we had Monday off and I had EID so I couldnt give the capstone the attention that I wanted to. But I still think I satisfied the criteria. 
 I believe finding the right planning tool to make the UML diagram was a difficult challenge. My friend Ahmad suggested using excel and he was right it was so much easier. 
-I also spent too much time thinking over the implementation in the diagram when a lot of methods I didnt use and the way i thought i was going to strucutre it changed over time. 
+I also spent too much time thinking over the implementation of the diagram and later on there were a lot of methods I didnt use.  As well as planning and implementation were two different beasts. The implementation's finer details dictated what parts of my program i could simplify. 
 
 ## Next time...
 I want to be able to make a GUI for the selections so that the user doesnt have to manually type everything in when it could all be buttons. 
