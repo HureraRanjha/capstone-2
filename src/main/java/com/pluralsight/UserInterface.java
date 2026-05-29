@@ -1,9 +1,6 @@
 package com.pluralsight;
 
-import com.pluralsight.Enums.Bread;
-import com.pluralsight.Enums.Cheese;
-import com.pluralsight.Enums.Ingredients;
-import com.pluralsight.Enums.Toppings;
+import com.pluralsight.Enums.*;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -262,6 +259,45 @@ public class UserInterface
             else if (userInput == 8)  toppings.add(Toppings.GUACAMOLE);
             else if (userInput == 9)  toppings.add(Toppings.MUSHROOMS);
             else if (userInput == 0) return toppings;
+            else System.err.println("Invalid Input. Try again");
+        } while(true);
+    }
+
+    private HashSet<Sauces> displaySauces()
+    {
+        HashSet<Sauces> sauces = new HashSet<>();
+        String wantSauces;
+
+        System.out.println("""
+                Do you want sauces? (yes/no)
+                
+                """);
+        wantSauces = scanner.nextLine();
+        if(wantSauces.equalsIgnoreCase("no")) return sauces;
+
+        int userInput;
+        do
+        {
+            System.out.println("""
+                What type of sauces do you want?
+                1. Mayo
+                2. Mustard
+                3. Ketchup
+                4. Ranch
+                5. Thousand_Islands
+                6. Vinaigrette
+                0. Done
+                """);
+
+            userInput = Integer.parseInt(scanner.nextLine());
+
+            if (userInput == 1) sauces.add(Sauces.MAYO);
+            else if (userInput == 2)  sauces.add(Sauces.MUSTARD);
+            else if (userInput == 3)  sauces.add(Sauces.KETCHUP);
+            else if (userInput == 4)  sauces.add(Sauces.RANCH);
+            else if (userInput == 5)  sauces.add(Sauces.THOUSAND_ISLANDS);
+            else if (userInput == 6)  sauces.add(Sauces.VINAIGRETTE);
+            else if (userInput == 0) return sauces;
             else System.err.println("Invalid Input. Try again");
         } while(true);
     }
