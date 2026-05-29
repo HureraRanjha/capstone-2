@@ -87,6 +87,10 @@ public class UserInterface
         if(cheese != null) hasExtraCheese = displayExtraCheese();
 
         HashSet<Toppings> toppings = displayToppings();
+
+        HashSet<Sauces> sauces = displaySauces();
+
+        HashSet<Sides> sides = displaySides();
         //Sandwich sandwich = new Sandwich(bread)
     }
 
@@ -301,6 +305,38 @@ public class UserInterface
             else System.err.println("Invalid Input. Try again");
         } while(true);
     }
+
+    private HashSet<Sides> displaySides()
+    {
+        HashSet<Sides> sides = new HashSet<>();
+        String wantSides;
+
+        System.out.println("""
+                Do you want sides? (yes/no)
+                
+                """);
+        wantSides = scanner.nextLine();
+        if(wantSides.equalsIgnoreCase("no")) return sides;
+
+        int userInput;
+        do
+        {
+            System.out.println("""
+                What type of sides do you want?
+                1. Au jus
+                2. Sauce
+                0. Done
+                """);
+
+            userInput = Integer.parseInt(scanner.nextLine());
+
+            if (userInput == 1) sides.add(Sides.AU_JUS);
+            else if (userInput == 2)  sides.add(Sides.SAUCE);
+            else if (userInput == 0) return sides;
+            else System.err.println("Invalid Input. Try again");
+        } while(true);
+    }
+
 
     //private void displayProducts(Arra)
 }
