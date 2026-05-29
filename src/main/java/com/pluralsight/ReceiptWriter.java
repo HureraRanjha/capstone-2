@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class RecieptWriter
+public class ReceiptWriter
 {
     String RECEIPT_PATH = "src/main/resources/receipts/";
 
-    public void printReciept(Order order)
+    public void printReceipt(Order order)
     {
         LocalDateTime today = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");

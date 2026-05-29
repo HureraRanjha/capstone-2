@@ -9,7 +9,7 @@ public class UserInterface
 {
     private Order order;
     Scanner scanner = new Scanner(System.in);
-    RecieptWriter recieptWriter = new RecieptWriter();
+    ReceiptWriter receiptWriter = new ReceiptWriter();
 
     public void display()
     {
@@ -415,7 +415,7 @@ public class UserInterface
 
         if(userInput.equalsIgnoreCase("no")) return false;
 
-        recieptWriter.printReciept(order);
+        receiptWriter.printReceipt(order);
         return true;
     }
 
