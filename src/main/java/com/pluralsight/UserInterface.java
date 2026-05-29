@@ -3,7 +3,9 @@ package com.pluralsight;
 import com.pluralsight.Enums.Bread;
 import com.pluralsight.Enums.Cheese;
 import com.pluralsight.Enums.Ingredients;
+import com.pluralsight.Enums.Toppings;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class UserInterface
@@ -87,7 +89,7 @@ public class UserInterface
         boolean hasExtraCheese;
         if(cheese != null) hasExtraCheese = displayExtraCheese();
 
-
+        HashSet<Toppings> toppings = displayToppings();
         //Sandwich sandwich = new Sandwich(bread)
     }
 
@@ -219,7 +221,50 @@ public class UserInterface
         return wantExtraCheese.equalsIgnoreCase("yes");
     }
 
+    private HashSet<Toppings> displayToppings()
+    {
+        HashSet<Toppings> toppings = new HashSet<>();
+        String wantToppings;
 
+        System.out.println("""
+                Do you want toppings? (yes/no)
+                
+                """);
+        wantToppings = scanner.nextLine();
+        if(wantToppings.equalsIgnoreCase("no")) return toppings;
+
+        int userInput;
+        do
+        {
+            System.out.println("""
+                What type of toppings do you want?
+                1. Lettuce
+                2. Peppers
+                3. Onions
+                4. Tomatoes
+                5. Jalapenos
+                6. Cucumbers
+                7. Pickles
+                8. Guacamole
+                9. Mushrooms
+                0. Done
+                """);
+
+            userInput = Integer.parseInt(scanner.nextLine());
+
+            if (userInput == 1) toppings.add(Toppings.LETTUCE);
+            else if (userInput == 2)  toppings.add(Toppings.PEPPERS);
+            else if (userInput == 3)  toppings.add(Toppings.ONIONS);
+            else if (userInput == 4)  toppings.add(Toppings.TOMATOES);
+            else if (userInput == 5)  toppings.add(Toppings.JALAPENOS);
+            else if (userInput == 6)  toppings.add(Toppings.CUCUMBERS);
+            else if (userInput == 7)  toppings.add(Toppings.PICKLES);
+            else if (userInput == 8)  toppings.add(Toppings.GUACAMOLE);
+            else if (userInput == 9)  toppings.add(Toppings.MUSHROOMS);
+            else if (userInput == 0) return toppings;
+            else System.err.println("Invalid Input. Try again");
+        } while(true);
+    }
 
     //private void displayProducts(Arra)
 }
