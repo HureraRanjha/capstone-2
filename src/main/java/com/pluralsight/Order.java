@@ -21,5 +21,16 @@ public class Order
         return price;
     }
 
+    public void displayOrder()
+    {
+        String display = "";
+        for(Product p: products)
+        {
+            display += p;
+        }
+
+        System.out.println(display);
+    }
+
 
 }

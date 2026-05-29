@@ -7,4 +7,10 @@ public class Chips implements Product
     {
         return 1.5;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Chips:          $" + getPrice() + "\n";
+    }
 }

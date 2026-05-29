@@ -23,4 +23,17 @@ public class Drink implements Product
             case LARGE -> 3.0;
         };
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("""
+                Drink:           %.2f
+                    Size: %s
+                    
+                """,
+                getPrice(),
+                size
+        );
+    }
 }

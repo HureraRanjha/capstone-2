@@ -113,19 +113,71 @@ public class Sandwich implements Product
                 if(hasExtraMeat) total += .5;
                 if(cheese != null) total += 0.75;
                 if(hasExtraCheese) total += 0.3;
+                break;
             case 8:
                 total += 7.0;
                 if(meat != null) total += 2;
                 if(hasExtraMeat) total += 1.0;
                 if(cheese != null) total += 1.5;
                 if(hasExtraCheese) total += 0.6;
+                break;
             case 12:
                 total += 8.50;
                 if(meat != null) total += 3;
                 if(hasExtraMeat) total += 1.5;
                 if(cheese != null) total += 2.25;
                 if(hasExtraCheese) total += 0.9;
+                break;
         }
         return total;
+    }
+
+    //Add edge cases for all options
+    @Override
+    public String toString()
+    {
+        String allToppings = "";
+
+        for(Toppings t: toppings)
+        {
+            allToppings += "\n \t* " + t;
+        }
+
+        String allSauces = "";
+
+        for(Sauces s: sauces)
+        {
+            allSauces += "\n \t* " + s;
+        }
+
+        String allSides = "";
+
+        for(Sides s: sides)
+        {
+            allSides += "\n \t* " + s;
+        }
+
+        return String.format("""
+                %d, %s Sandwich   $%.2f
+                    Meat: %s%s
+                    Cheese: %s%s
+                    Toppings: %s
+                    Sauces: %s
+                    Sides: %s
+                    Toasted: %s
+                    
+                """,
+                sandwichSize,
+                bread,
+                getPrice(),
+                hasExtraMeat ? "Extra " : "",
+                meat,
+                hasExtraCheese ? "Extra " : "",
+                cheese,
+                allToppings,
+                allSauces,
+                allSides,
+                isToasted ? "Yes" : "No"
+                );
     }
 }
