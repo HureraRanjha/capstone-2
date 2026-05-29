@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import com.pluralsight.Enums.Bread;
+import com.pluralsight.Enums.Cheese;
 import com.pluralsight.Enums.Ingredients;
 
 import java.util.Scanner;
@@ -80,6 +81,11 @@ public class UserInterface
 
         boolean hasExtraMeat;
         if(meat != null) hasExtraMeat = displayExtraMeat();
+
+        Cheese cheese = displayCheese();
+
+        boolean hasExtraCheese;
+        if(cheese != null) hasExtraCheese = displayExtraCheese();
 
 
         //Sandwich sandwich = new Sandwich(bread)
@@ -170,6 +176,47 @@ public class UserInterface
         String wantExtraMeat = scanner.nextLine();
 
         return wantExtraMeat.equalsIgnoreCase("yes");
+    }
+
+    private Cheese displayCheese()
+    {
+        String wantCheese;
+
+        System.out.println("""
+                Do you want cheese? (yes/no)
+                """);
+        wantCheese = scanner.nextLine();
+        if(wantCheese.equalsIgnoreCase("no")) return null;
+
+        int userInput;
+        do
+        {
+            System.out.println("""
+                What type of cheese do you want?
+                1. American
+                2. Provolone
+                3. Cheddar
+                4. Swiss
+                """);
+            userInput = Integer.parseInt(scanner.nextLine());
+
+            if (userInput == 1) return Cheese.AMERICAN;
+            else if (userInput == 2) return Cheese.PROVOLONE;
+            else if (userInput == 3) return Cheese.CHEDDAR;
+            else if (userInput == 4) return Cheese.SWISS;
+            else System.err.println("Invalid Input. Try again");
+        } while(true);
+    }
+
+    private boolean displayExtraCheese()
+    {
+        System.out.println("""
+                Do you want extra cheese? (yes/no)
+                
+                """);
+        String wantExtraCheese = scanner.nextLine();
+
+        return wantExtraCheese.equalsIgnoreCase("yes");
     }
 
 
