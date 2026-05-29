@@ -49,13 +49,28 @@ public class Order
     @Override
     public String toString()
     {
+        String thickSeperator = "========================================";
+        String thinSeperator =  "----------------------------------------";
+
         String display = "";
+        int itemNum = 1;
         for(Product p: products)
         {
-            display += p;
+            display += itemNum + ") " + p;
         }
 
-        return display;
+        return String.format("""
+                %s
+                            H & H NYC DELI
+                                Receipt
+                %s
+                
+                %s%s
+                                      TOTAL:   $%.2f
+                %S
+                        Thank you for dropping by!
+                %s
+                """, thickSeperator, thickSeperator, display, thinSeperator, getOrderValue(), thickSeperator, thickSeperator);
     }
 
 
