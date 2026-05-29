@@ -27,7 +27,7 @@ public class UserInterface
                     2. Exit 
                     """);
 
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             switch(userInput)
             {
@@ -56,7 +56,7 @@ public class UserInterface
                     0. Cancel Order 
                     """);
 
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             switch(userInput)
             {
@@ -121,7 +121,7 @@ public class UserInterface
                 4. Wrap
                 
                 """);
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             if (userInput == 1) return Bread.WHITE;
             else if (userInput == 2) return Bread.WHEAT;
@@ -141,7 +141,7 @@ public class UserInterface
                 What size of bread do you want (4, 8, or 12 inches)?
                 
                 """);
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             if (userInput == 4 || userInput == 8 || userInput == 12) return userInput;
             else System.err.println("Invalid Input. Try again");
@@ -172,7 +172,7 @@ public class UserInterface
                 6. Bacon
                 
                 """);
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             if (userInput == 1) return Ingredients.STEAK;
             else if (userInput == 2) return Ingredients.HAM;
@@ -215,7 +215,7 @@ public class UserInterface
                 3. Cheddar
                 4. Swiss
                 """);
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             if (userInput == 1) return Cheese.AMERICAN;
             else if (userInput == 2) return Cheese.PROVOLONE;
@@ -265,7 +265,7 @@ public class UserInterface
                 0. Done
                 """);
 
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             if (userInput == 1) toppings.add(Toppings.LETTUCE);
             else if (userInput == 2)  toppings.add(Toppings.PEPPERS);
@@ -307,7 +307,7 @@ public class UserInterface
                 0. Done
                 """);
 
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             if (userInput == 1) sauces.add(Sauces.MAYO);
             else if (userInput == 2)  sauces.add(Sauces.MUSTARD);
@@ -342,7 +342,7 @@ public class UserInterface
                 0. Done
                 """);
 
-            userInput = Integer.parseInt(scanner.nextLine());
+            userInput = scanInt();
 
             if (userInput == 1) sides.add(Sides.AU_JUS);
             else if (userInput == 2)  sides.add(Sides.SAUCE);
@@ -372,7 +372,7 @@ public class UserInterface
             0. Cancel
             """);
 
-        int userInput = Integer.parseInt(scanner.nextLine());
+        int userInput = scanInt();
 
         if (userInput == 1) order.addProduct(new Drink(DrinkSize.SMALL));
         else if (userInput == 2)  order.addProduct(new Drink(DrinkSize.MEDIUM));
@@ -403,5 +403,18 @@ public class UserInterface
 
         recieptWriter.printReciept(order);
     }
-    //private void displayProducts(Arra)
+
+    private int scanInt()
+    {
+        while(true)
+        {
+            try
+            {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e)
+            {
+                System.err.println("Invalid Input. Enter a number! ");
+            }
+        }
+    }
 }
