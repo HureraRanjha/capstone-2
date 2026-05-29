@@ -61,8 +61,8 @@ public class UserInterface
             {
                 case 1 -> displaySandwichScreen();
                 case 2 -> displayDrinkScreen();
-//                case 3 -> displayChipsScreen();
-//                case 4 -> displayCheckoutScreen();
+                case 3 -> displayChipsScreen();
+                //case 4 -> displayCheckoutScreen();
                 case 0 -> repeat = false;
                 default -> System.err.println("Invalid Input. Try again");
             }
@@ -356,36 +356,33 @@ public class UserInterface
 
     private void displayDrinkScreen()
     {
-        String wantDrink;
-
         System.out.println("""
-                Do you want drinks? (yes/no)
-                
-                """);
-        wantDrink = scanner.nextLine();
-        if(wantDrink.equalsIgnoreCase("no")) return;
+            What size drink do you want?
+            1. Small
+            2. Medium
+            3. Large
+            0. Cancel
+            """);
 
-        int userInput;
-        do
-        {
-            System.out.println("""
-                What size drink do you want?
-                1. Small
-                2. Medium
-                3. Large
-                0. Done
-                """);
+        int userInput = Integer.parseInt(scanner.nextLine());
 
-            userInput = Integer.parseInt(scanner.nextLine());
-
-            if (userInput == 1) order.addProduct(new Drink(DrinkSize.SMALL));
-            else if (userInput == 2)  order.addProduct(new Drink(DrinkSize.MEDIUM));
-            else if (userInput == 3)  order.addProduct(new Drink(DrinkSize.LARGE));
-            else if (userInput == 0) return;
-            else System.err.println("Invalid Input. Try again");
-
-        } while(true);
+        if (userInput == 1) order.addProduct(new Drink(DrinkSize.SMALL));
+        else if (userInput == 2)  order.addProduct(new Drink(DrinkSize.MEDIUM));
+        else if (userInput == 3)  order.addProduct(new Drink(DrinkSize.LARGE));
+        else if (userInput == 0) {}
+        else System.err.println("Invalid Input. Try again");
     }
 
+    private void displayChipsScreen()
+    {
+        String wantChips;
+
+        System.out.println("""
+                Do you want chips? (yes/no)
+                
+                """);
+        wantChips = scanner.nextLine();
+        if(wantChips.equalsIgnoreCase("yes")) order.addProduct(new Chips());
+    }
     //private void displayProducts(Arra)
 }
