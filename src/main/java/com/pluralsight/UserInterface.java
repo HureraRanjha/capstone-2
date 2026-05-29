@@ -9,6 +9,7 @@ public class UserInterface
 {
     private Order order;
     Scanner scanner = new Scanner(System.in);
+    RecieptWriter recieptWriter = new RecieptWriter();
 
     public void display()
     {
@@ -62,7 +63,14 @@ public class UserInterface
                 case 1 -> displaySandwichScreen();
                 case 2 -> displayDrinkScreen();
                 case 3 -> displayChipsScreen();
-                //case 4 -> displayCheckoutScreen();
+                case 4 ->
+                {
+                    if (!order.containsSandwiches() && !order.containsSmallItem())
+                    {
+                        System.err.println("If you dont buy a sandwich you MUST purchase a drink or a chips bag");
+                    }
+                    else displayCheckoutScreen();
+                }
                 case 0 -> repeat = false;
                 default -> System.err.println("Invalid Input. Try again");
             }
@@ -383,6 +391,17 @@ public class UserInterface
                 """);
         wantChips = scanner.nextLine();
         if(wantChips.equalsIgnoreCase("yes")) order.addProduct(new Chips());
+    }
+
+    private void displayCheckoutScreen()
+    {
+        System.out.println(order);
+        System.out.println("This is the current order. Are you ok with it? (yes/no) ");
+        String userInput = scanner.nextLine();
+
+        if(userInput.equalsIgnoreCase("no")) return;
+
+        recieptWriter.printReciept(order);
     }
     //private void displayProducts(Arra)
 }

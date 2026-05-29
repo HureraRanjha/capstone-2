@@ -21,6 +21,30 @@ public class Order
         return price;
     }
 
+    public boolean containsSandwiches()
+    {
+        for(Product p: products)
+        {
+            if(p instanceof Sandwich)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsSmallItem()
+    {
+        for(Product p: products)
+        {
+            if(p instanceof Chips || p instanceof Drink)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Improve the output
     @Override
     public String toString()
