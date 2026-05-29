@@ -21,7 +21,9 @@ public class Order
         return price;
     }
 
-    public void displayOrder()
+    //Improve the output
+    @Override
+    public String toString()
     {
         String display = "";
         for(Product p: products)
@@ -29,7 +31,7 @@ public class Order
             display += p;
         }
 
-        System.out.println(display);
+        return display;
     }
 
 
