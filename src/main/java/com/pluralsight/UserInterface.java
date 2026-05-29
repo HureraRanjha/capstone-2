@@ -69,7 +69,10 @@ public class UserInterface
                     {
                         System.err.println("If you dont buy a sandwich you MUST purchase a drink or a chips bag");
                     }
-                    else displayCheckoutScreen();
+                    else if(displayCheckoutScreen())
+                    {
+                        repeat = false;
+                    }
                 }
                 case 0 -> repeat = false;
                 default -> System.err.println("Invalid Input. Try again");
@@ -354,7 +357,7 @@ public class UserInterface
     private boolean displayWantToasted()
     {
         System.out.println("""
-                Would you like the sandwich toasted?? (yes/no)
+                Would you like the sandwich toasted? (yes/no)
                 
                 """);
         String wantToasted = scanner.nextLine();
@@ -364,21 +367,32 @@ public class UserInterface
 
     private void displayDrinkScreen()
     {
-        System.out.println("""
-            What size drink do you want?
-            1. Small
-            2. Medium
-            3. Large
-            0. Cancel
-            """);
+        boolean loop;
+        do
+        {
+            loop = false;
+            System.out.println("""
+                    What size drink do you want?
+                    1. Small
+                    2. Medium
+                    3. Large
+                    0. Cancel
+                    """);
 
-        int userInput = scanInt();
+            int userInput = scanInt();
 
-        if (userInput == 1) order.addProduct(new Drink(DrinkSize.SMALL));
-        else if (userInput == 2)  order.addProduct(new Drink(DrinkSize.MEDIUM));
-        else if (userInput == 3)  order.addProduct(new Drink(DrinkSize.LARGE));
-        else if (userInput == 0) {}
-        else System.err.println("Invalid Input. Try again");
+            if (userInput == 1) order.addProduct(new Drink(DrinkSize.SMALL));
+            else if (userInput == 2) order.addProduct(new Drink(DrinkSize.MEDIUM));
+            else if (userInput == 3) order.addProduct(new Drink(DrinkSize.LARGE));
+            else if (userInput == 0)
+            {
+            } else
+            {
+                System.err.println("Invalid Input. Try again");
+                loop = true;
+            }
+        }while(loop);
+
     }
 
     private void displayChipsScreen()
@@ -393,15 +407,16 @@ public class UserInterface
         if(wantChips.equalsIgnoreCase("yes")) order.addProduct(new Chips());
     }
 
-    private void displayCheckoutScreen()
+    private boolean displayCheckoutScreen()
     {
         System.out.println(order);
         System.out.println("This is the current order. Are you ok with it? (yes/no) ");
         String userInput = scanner.nextLine();
 
-        if(userInput.equalsIgnoreCase("no")) return;
+        if(userInput.equalsIgnoreCase("no")) return false;
 
         recieptWriter.printReciept(order);
+        return true;
     }
 
     private int scanInt()
