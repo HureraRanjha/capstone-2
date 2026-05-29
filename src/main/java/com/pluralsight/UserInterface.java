@@ -78,12 +78,12 @@ public class UserInterface
 
         Ingredients meat = displayMeat();
 
-        boolean hasExtraMeat;
+        boolean hasExtraMeat = false;
         if(meat != null) hasExtraMeat = displayExtraMeat();
 
         Cheese cheese = displayCheese();
 
-        boolean hasExtraCheese;
+        boolean hasExtraCheese = false;
         if(cheese != null) hasExtraCheese = displayExtraCheese();
 
         HashSet<Toppings> toppings = displayToppings();
@@ -91,7 +91,13 @@ public class UserInterface
         HashSet<Sauces> sauces = displaySauces();
 
         HashSet<Sides> sides = displaySides();
-        //Sandwich sandwich = new Sandwich(bread)
+
+        boolean isToasted = displayWantToasted();
+
+        Sandwich sandwich = new Sandwich(bread, sandwichSize, meat, hasExtraMeat, cheese, hasExtraCheese, toppings, sauces, sides, isToasted);
+
+        order.addProduct(sandwich);
+
     }
 
     private Bread displayBread()
@@ -335,6 +341,17 @@ public class UserInterface
             else if (userInput == 0) return sides;
             else System.err.println("Invalid Input. Try again");
         } while(true);
+    }
+
+    private boolean displayWantToasted()
+    {
+        System.out.println("""
+                Would you like the sandwich toasted?? (yes/no)
+                
+                """);
+        String wantToasted = scanner.nextLine();
+
+        return wantToasted.equalsIgnoreCase("yes");
     }
 
 
