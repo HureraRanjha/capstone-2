@@ -6,6 +6,8 @@ import java.util.HashSet;
 
 public class Sandwich implements Product
 {
+    // Added all possible variables for the Sandwich class
+
     private Bread bread;
     private int sandwichSize;
 
@@ -21,6 +23,7 @@ public class Sandwich implements Product
 
     private boolean isToasted;
 
+    //This constructor is long but it works. Passed in every variable
     public Sandwich(Bread bread, int sandwichSize, Ingredients meat, boolean hasExtraMeat, Cheese cheese, boolean hasExtraCheese, HashSet<Toppings> toppings, HashSet<Sauces> sauces, HashSet<Sides> sides, boolean isToasted)
     {
         this.bread = bread;
@@ -34,6 +37,7 @@ public class Sandwich implements Product
         this.sides = sides;
         this.isToasted = isToasted;
     }
+    //Getters
 
     public Bread getBread()
     {
@@ -101,6 +105,7 @@ public class Sandwich implements Product
         sides.add(side);
     }
 
+    //Gets the total price of all the different sandwich sizes.
     @Override
     public double getPrice()
     {
@@ -132,7 +137,9 @@ public class Sandwich implements Product
         return total;
     }
 
-    //Add edge cases for all options
+
+    //DONE: Add edge cases for all options
+    //This Overridden toString method appends all values into a string
     @Override
     public String toString()
     {

@@ -7,18 +7,18 @@ import java.util.Scanner;
 
 public class UserInterface
 {
-    private Order order;
-    Scanner scanner = new Scanner(System.in);
-    ReceiptWriter receiptWriter = new ReceiptWriter();
+    private Order order; //Make a order object
+    Scanner scanner = new Scanner(System.in);    //Global scanner
+    ReceiptWriter receiptWriter = new ReceiptWriter();  //Receipt Writer object
 
     public void display()
     {
         displayHomeScreen();
-    }
+    }   //Display calles displayHomeScreen
 
     private void displayHomeScreen()
     {
-        boolean repeat = true;
+        boolean repeat = true;     //Always repeat until false
         int userInput;
         do
         {
@@ -30,21 +30,22 @@ public class UserInterface
                     2. Exit 
                     """);
 
-            userInput = scanInt();
+            userInput = scanInt(); //Get valid userInput integer
 
             switch(userInput)
             {
                 case 1 -> {
-                    order = new Order();
-                    displayOrderScreen();
+                    order = new Order(); //Always intialize a new Order
+                    displayOrderScreen(); //Call order method
                 }
-                case 2 -> repeat = false;
-                default -> System.err.println("Invalid Input. Try again");
+                case 2 -> repeat = false;  //If user exits break out of while loop
+                default -> System.err.println("Invalid Input. Try again");    //Otherwise have a valid input
             }
         }
         while(repeat);
     }
 
+    //Can add sandwich, drink, chips, checkout, or cancel order
     private void displayOrderScreen()
     {
         boolean repeat = true;
@@ -66,16 +67,16 @@ public class UserInterface
 
             switch(userInput)
             {
-                case 1 -> displaySandwichScreen();
-                case 2 -> displayDrinkScreen();
-                case 3 -> displayChipsScreen();
+                case 1 -> displaySandwichScreen();    //Go to sandwich screen
+                case 2 -> displayDrinkScreen();       //Go to drink screen
+                case 3 -> displayChipsScreen();       //Go to chips screen
                 case 4 ->
                 {
-                    if (!order.containsSandwiches() && !order.containsSmallItem())
+                    if (!order.containsSandwiches() && !order.containsSmallItem())  //Check if the user has at least a sandwich or a chips or a drink
                     {
                         System.err.println("If you dont buy a sandwich you MUST purchase a drink or a chips bag");
                     }
-                    else if(displayCheckoutScreen())
+                    else if(displayCheckoutScreen())  //Otherwise go to Checkout Screen
                     {
                         repeat = false;
                     }
@@ -87,6 +88,7 @@ public class UserInterface
         while(repeat);
     }
 
+    //Add sandwich broke out into every method to display each step
     private void displaySandwichScreen()
     {
         System.out.println("""
@@ -94,34 +96,38 @@ public class UserInterface
                           SANDWICH SCREEN
                 ==================================
                 """);
-        Bread bread = displayBread();
+        Bread bread = displayBread();    //Display Bread Method
 
-        int sandwichSize = displaySandwichSize();
+        int sandwichSize = displaySandwichSize();  //Display sandwich size Method
 
-        Ingredients meat = displayMeat();
+        Ingredients meat = displayMeat();     //Display meat Method
 
         boolean hasExtraMeat = false;
-        if(meat != null) hasExtraMeat = displayExtraMeat();
+        if(meat != null) hasExtraMeat = displayExtraMeat();  //Check if meat was selected then call Display Extra Meat method
 
-        Cheese cheese = displayCheese();
+        Cheese cheese = displayCheese(); //Display Cheese Method
 
         boolean hasExtraCheese = false;
-        if(cheese != null) hasExtraCheese = displayExtraCheese();
+        if(cheese != null) hasExtraCheese = displayExtraCheese(); //Check if cheese was selected then call Display Extra Cheese method
 
+        //Display respective items store in HashSet
         HashSet<Toppings> toppings = displayToppings();
 
         HashSet<Sauces> sauces = displaySauces();
 
         HashSet<Sides> sides = displaySides();
 
-        boolean isToasted = displayWantToasted();
+        boolean isToasted = displayWantToasted();    //If the User wants bread to be toasted
 
+        //Passed in stored values into a sandwich constructor
         Sandwich sandwich = new Sandwich(bread, sandwichSize, meat, hasExtraMeat, cheese, hasExtraCheese, toppings, sauces, sides, isToasted);
 
+        //Add sandiwch into the order
         order.addProduct(sandwich);
 
     }
 
+    //Display bread and return a enum Bread type
     private Bread displayBread()
     {
         int userInput;
@@ -137,6 +143,7 @@ public class UserInterface
                 """);
             userInput = scanInt();
 
+            //Check respective inputs to return respective Enum
             if (userInput == 1) return Bread.WHITE;
             else if (userInput == 2) return Bread.WHEAT;
             else if (userInput == 3) return Bread.RYE;
@@ -145,6 +152,7 @@ public class UserInterface
         } while(true);
     }
 
+    //Display Sandwich Size return int
     private int displaySandwichSize()
     {
         int userInput;
@@ -157,11 +165,13 @@ public class UserInterface
                 """);
             userInput = scanInt();
 
+            //If userInput is not the 3 valid inputs prompt the user to try again
             if (userInput == 4 || userInput == 8 || userInput == 12) return userInput;
             else System.err.println("Invalid Input. Try again");
         } while(true);
     }
 
+    //Display Meat and return Ingredients Enum
     private Ingredients displayMeat()
     {
         String wantMeat;
@@ -171,7 +181,7 @@ public class UserInterface
                 
                 """);
         wantMeat = scanner.nextLine();
-        if(wantMeat.equalsIgnoreCase("no")) return null;
+        if(wantMeat.equalsIgnoreCase("no")) return null; //If user does not want meat return null
 
         int userInput;
         do
@@ -187,7 +197,7 @@ public class UserInterface
                 
                 """);
             userInput = scanInt();
-
+            //Get respective Meat selection otherwise prompt again
             if (userInput == 1) return Ingredients.STEAK;
             else if (userInput == 2) return Ingredients.HAM;
             else if (userInput == 3) return Ingredients.SALAMI;
@@ -198,6 +208,7 @@ public class UserInterface
         } while(true);
     }
 
+    //Display extra meat returns boolean
     private boolean displayExtraMeat()
     {
         System.out.println("""
@@ -209,6 +220,7 @@ public class UserInterface
         return wantExtraMeat.equalsIgnoreCase("yes");
     }
 
+    //Display Cheese and return Cheese Enum
     private Cheese displayCheese()
     {
         String wantCheese;
@@ -217,7 +229,7 @@ public class UserInterface
                 Do you want cheese? (yes/no)
                 """);
         wantCheese = scanner.nextLine();
-        if(wantCheese.equalsIgnoreCase("no")) return null;
+        if(wantCheese.equalsIgnoreCase("no")) return null; //If user does not want cheese return null
 
         int userInput;
         do
@@ -239,6 +251,7 @@ public class UserInterface
         } while(true);
     }
 
+    //Display extra meat returns boolean
     private boolean displayExtraCheese()
     {
         System.out.println("""
@@ -249,6 +262,7 @@ public class UserInterface
         return wantExtraCheese.equalsIgnoreCase("yes");
     }
 
+    //Display Toppings and return a HashSet
     private HashSet<Toppings> displayToppings()
     {
         HashSet<Toppings> toppings = new HashSet<>();
@@ -294,6 +308,7 @@ public class UserInterface
         } while(true);
     }
 
+    //Display Sauces and return a HashSet
     private HashSet<Sauces> displaySauces()
     {
         HashSet<Sauces> sauces = new HashSet<>();
@@ -332,6 +347,7 @@ public class UserInterface
         } while(true);
     }
 
+    //Display Sides and return a HashSet
     private HashSet<Sides> displaySides()
     {
         HashSet<Sides> sides = new HashSet<>();
@@ -363,6 +379,7 @@ public class UserInterface
         } while(true);
     }
 
+    //Display Want Toasted and return a Boolean
     private boolean displayWantToasted()
     {
         System.out.println("""
@@ -374,6 +391,7 @@ public class UserInterface
         return wantToasted.equalsIgnoreCase("yes");
     }
 
+    //Display Drink Screen
     private void displayDrinkScreen()
     {
         boolean loop;
@@ -393,6 +411,7 @@ public class UserInterface
 
             int userInput = scanInt();
 
+            //Add respective drinks and their sizes
             if (userInput == 1) order.addProduct(new Drink(DrinkSize.SMALL));
             else if (userInput == 2) order.addProduct(new Drink(DrinkSize.MEDIUM));
             else if (userInput == 3) order.addProduct(new Drink(DrinkSize.LARGE));
@@ -407,6 +426,7 @@ public class UserInterface
 
     }
 
+    //Display Chips Screen
     private void displayChipsScreen()
     {
         String wantChips;
@@ -417,11 +437,12 @@ public class UserInterface
                 ==================================
                 Do you want chips? (yes/no)
                 
-                """);
+                """     );
         wantChips = scanner.nextLine();
-        if(wantChips.equalsIgnoreCase("yes")) order.addProduct(new Chips());
+        if(wantChips.equalsIgnoreCase("yes")) order.addProduct(new Chips());   //Add chips to the order if user wants it
     }
 
+    //Display Checkout and return a boolean
     private boolean displayCheckoutScreen()
     {
         System.out.println(order);
@@ -434,6 +455,7 @@ public class UserInterface
         return true;
     }
 
+    //Check if the int is valid
     private int scanInt()
     {
         while(true)
@@ -441,7 +463,7 @@ public class UserInterface
             try
             {
                 return Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e)
+            } catch (NumberFormatException e)    //If the number is not an Integer Return an Error and try again
             {
                 System.err.println("Invalid Input. Enter a number! ");
             }

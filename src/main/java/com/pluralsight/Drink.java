@@ -6,12 +6,13 @@ public class Drink implements Product
 {
     private DrinkSize size;
 
+    //Drink constructor only takes DrinkSize enum
     public Drink(DrinkSize size)
     {
         this.size = size;
     }
 
-
+    //Drink uses the enum to set the price so the user doesnt set a wrong price
     @Override
     public double getPrice()
     {
@@ -24,6 +25,7 @@ public class Drink implements Product
         };
     }
 
+    //toString method is used to output to the receipt
     @Override
     public String toString()
     {

@@ -9,16 +9,16 @@ import java.time.format.DateTimeFormatter;
 
 public class ReceiptWriter
 {
-    String RECEIPT_PATH = "src/main/resources/receipts/";
+    String RECEIPT_PATH = "src/main/resources/receipts/";    //Updated Receipts Folder Path
 
     public void printReceipt(Order order)
     {
-        LocalDateTime today = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
+        LocalDateTime today = LocalDateTime.now();     //Get the current date time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"); //Add a formatter for the file name
         String formattedDateTime = today.format(formatter);
         try{
             File receiptsFolder = new File(RECEIPT_PATH);
-            if(!receiptsFolder.exists()) receiptsFolder.mkdirs();
+            if(!receiptsFolder.exists()) receiptsFolder.mkdirs(); //Check if the receipts folder exits otherwise create it
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(RECEIPT_PATH + formattedDateTime + ".txt"));
 
