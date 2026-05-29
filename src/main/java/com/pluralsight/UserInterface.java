@@ -72,6 +72,7 @@ public class UserInterface
     private void displaySandwichScreen()
     {
         Bread bread = displayBread();
+        int sandwichSize = displaySandwichSize();
         //Sandwich sandwich = new Sandwich(bread)
     }
 
@@ -86,6 +87,7 @@ public class UserInterface
                 2. Wheat
                 3. Rye
                 4. Wrap
+                
                 """);
             userInput = Integer.parseInt(scanner.nextLine());
 
@@ -93,6 +95,23 @@ public class UserInterface
             else if (userInput == 2) return Bread.WHEAT;
             else if (userInput == 3) return Bread.RYE;
             else if (userInput == 4) return Bread.WRAP;
+            else System.err.println("Invalid Input. Try again");
+        } while(true);
+    }
+
+    private int displaySandwichSize()
+    {
+        int userInput;
+        do
+        {
+            System.out.println("""
+                
+                What size of bread do you want (4, 8, or 12 inches)?
+                
+                """);
+            userInput = Integer.parseInt(scanner.nextLine());
+
+            if (userInput == 4 || userInput == 8 || userInput == 12) return userInput;
             else System.err.println("Invalid Input. Try again");
         } while(true);
     }
